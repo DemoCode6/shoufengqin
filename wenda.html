@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/news_list.css">
+</head>
+<script>
+    +function () {
+        remLayout();
+
+        function remLayout() {
+            var w = document.documentElement.clientWidth;
+            w = w > 750 ? 750 : w;
+            w = w <= 320 ? 320 : w;
+            document.documentElement.style.fontSize = w / 7.5 + 'px';
+        }
+
+        window.addEventListener('resize', function () {
+            remLayout();
+        }, false);
+    }();
+</script>
+
+<body>
+    <ul id="accordion" class="accordion">
+        <li>
+            <div class="link"><i class="fa fa-paint-brush"></i>问： 1. 学校和家长之间的沟通如何建立?<i class="fa fa-chevron-down"><img src="img/jinatou1.png" alt=""></i></div>
+            <div class="submenu"> 答：我们学校班主任每周都会和家长联系把孩子一周的学习情况反馈给家长，同时学校会定期开家庭教育讲座，更好的让家长和老师有效的配合，共同让孩子健康快乐的成长。</div>
+        </li>
+        <li>
+            <div class="link"><i class="fa fa-code"></i>问： 1. 学校和家长之间的沟通如何建立?<i class="fa fa-chevron-down"><img src="img/jinatou1.png" alt=""></i></div>
+            <div class="submenu"> 答：我们学校班主任每周都会和家长联系把孩子一周的学习情况反馈给家长，同时学校会定期开家庭教育讲座，更好的让家长和老师有效的配合，共同让孩子健康快乐的成长。</div>
+        </li>
+        <li>
+            <div class="link"><i class="fa fa-mobile"></i>问： 1. 学校和家长之间的沟通如何建立?<i class="fa fa-chevron-down"><img src="img/jinatou1.png" alt=""></i></div>
+            <div class="submenu"> 答：我们学校班主任每周都会和家长联系把孩子一周的学习情况反馈给家长，同时学校会定期开家庭教育讲座，更好的让家长和老师有效的配合，共同让孩子健康快乐的成长。</div>
+        </li>
+        <li>
+            <div class="link"><i class="fa fa-globe"></i>问： 1. 学校和家长之间的沟通如何建立?<i class="fa fa-chevron-down"><img src="img/jinatou1.png" alt=""></i></div>
+            <div class="submenu"> 答：我们学校班主任每周都会和家长联系把孩子一周的学习情况反馈给家长，同时学校会定期开家庭教育讲座，更好的让家长和老师有效的配合，共同让孩子健康快乐的成长。</div>
+        </li>
+    </ul>
+
+    <script src="js/jquery.min.js"></script>
+    <script>
+
+        $(function () {
+            var Accordion = function (el, multiple) {
+                this.el = el || {};
+                this.multiple = multiple || false;
+
+                // Variables privadas   
+                var links = this.el.find('.link');
+                // Evento   
+                links.on('click', { el: this.el, multiple: this.multiple }, this.dropdown)
+            }
+
+            Accordion.prototype.dropdown = function (e) {
+                var $el = e.data.el;
+                $this = $(this),
+                    $next = $this.next();
+
+                $next.slideToggle();
+                $this.parent().toggleClass('open');
+
+                if (!e.data.multiple) {
+                    $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+                };
+            }
+
+            var accordion = new Accordion($('#accordion'), false);
+        });
+    </script>
+</body>
+
+</html>
